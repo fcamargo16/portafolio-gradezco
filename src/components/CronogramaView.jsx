@@ -4,6 +4,7 @@ import { cursosCronograma, unidades, meses } from '../data/data';
 
 const EstadoBadge = ({ estado }) => {
   const enCurso = estado === 'En curso';
+  const completado = estado === 'Completado';
   return (
     <span
       style={{
@@ -14,11 +15,11 @@ const EstadoBadge = ({ estado }) => {
         borderRadius: '999px',
         fontSize: '12px',
         fontWeight: '600',
-        backgroundColor: enCurso ? 'rgba(255, 0, 0, 0.1)' : 'rgba(186, 188, 190, 0.25)',
-        color: enCurso ? '#ff0000' : '#6c757d',
+        backgroundColor: completado ? 'rgba(40, 167, 69, 0.1)' : enCurso ? 'rgba(255, 0, 0, 0.1)' : 'rgba(186, 188, 190, 0.25)',
+        color: completado ? '#28a745' : enCurso ? '#ff0000' : '#6c757d',
       }}
     >
-      {enCurso ? <CheckCircle size={12} /> : <Clock size={12} />}
+      {completado ? <CheckCircle size={12} /> : enCurso ? <CheckCircle size={12} /> : <Clock size={12} />}
       {estado}
     </span>
   );
@@ -49,6 +50,7 @@ const CronogramaView = ({
   );
 
   const totalEnCurso = cursosFiltrados.filter((c) => c.estado === 'En curso').length;
+  const totalCompletado = cursosFiltrados.filter((c) => c.estado === 'Completado').length;
   const totalNoIniciado = cursosFiltrados.filter((c) => c.estado === 'No iniciado').length;
 
   return (
@@ -65,6 +67,10 @@ const CronogramaView = ({
 
         {/* Resumen rápido */}
         <div style={{ display: 'flex', gap: '16px', marginTop: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#121e4b' }}>
+            <CheckCircle size={16} color="#28a745" />
+            <span><strong style={{ color: '#28a745' }}>{totalCompletado}</strong> completados</span>
+          </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#121e4b' }}>
             <CheckCircle size={16} color="#ff0000" />
             <span><strong style={{ color: '#ff0000' }}>{totalEnCurso}</strong> en curso</span>
@@ -168,7 +174,7 @@ const CronogramaView = ({
               <div className="cursos-mes-grid">
                 {cursosDelMes.map((curso, idx) => (
                   <div key={idx} className="cronograma-card" style={{
-                    borderLeft: curso.estado === 'En curso' ? '3px solid #ff0000' : '3px solid transparent',
+                    borderLeft: curso.estado === 'Completado' ? '3px solid #28a745' : curso.estado === 'En curso' ? '3px solid #ff0000' : '3px solid transparent',
                   }}>
                     {/* Título y estado */}
                     <div className="cronograma-card-header">
@@ -179,8 +185,8 @@ const CronogramaView = ({
                     {/* Descripción */}
                     <p className="cronograma-descripcion">{curso.descripcion}</p>
 
-                    {/* Barra de progreso si está en curso */}
-                    {curso.estado === 'En curso' && curso.completado > 0 && (
+                    {/* Barra de progreso si está en curso o completado */}
+                    {(curso.estado === 'En curso' || curso.estado === 'Completado') && curso.completado > 0 && (
                       <div style={{ marginBottom: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6c757d', marginBottom: '4px' }}>
                           <span>Progreso</span>
@@ -189,7 +195,7 @@ const CronogramaView = ({
                         <div className="progress-bar-container" style={{ height: '8px' }}>
                           <div
                             className="progress-bar"
-                            style={{ width: `${curso.completado * 100}%` }}
+                            style={{ width: `${curso.completado * 100}%`, backgroundColor: curso.estado === 'Completado' ? '#28a745' : '#ff0000' }}
                           />
                         </div>
                       </div>
