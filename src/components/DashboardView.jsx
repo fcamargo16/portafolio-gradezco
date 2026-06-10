@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, User, Award, TrendingUp, CheckCircle, Clock, Heart } from 'lucide-react';
-import { cursos, unidades, TOTAL_EMPLEADOS } from '../data/data';
+import { cursos, TOTAL_EMPLEADOS } from '../data/data';
 
 const datosMes = {
   marzo: {
