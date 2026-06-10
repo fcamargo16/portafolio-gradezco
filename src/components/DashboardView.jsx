@@ -71,12 +71,46 @@ const datosMes = {
       tiempo: '1 hora',
     },
   },
+  mayo: {
+    cumplimiento: {
+      general: 86,
+      meta: 80,
+      detalle: [
+        { nombre: 'Alimentos',        porcentaje: '97%'  },
+        { nombre: 'Aceites',          porcentaje: '87%'  },
+        { nombre: 'Nutrición Animal', porcentaje: '100%' },
+        { nombre: 'Aseo',             porcentaje: '66%'  },
+      ],
+    },
+    eficacia: {
+      general: 0,
+      meta: 75,
+      evaluacionesRealizadas: 0,
+      aprobadas: 0,
+      promedio: '0%',
+    },
+    satisfaccion: {
+      puntaje: 4.7,
+      meta: 4.0,
+      encuestas: 26,
+      muySatisfechos: '18',
+      satisfechos: '6',
+    },
+    induccion: {
+      general: 98,
+      meta: 70,
+      empleados: '53',
+      totalEmpleados: '53',
+      promedio: '99%',
+      tiempo: '2 horas',
+    },
+  },
 };
 
-const mesesDisponibles = ['marzo', 'abril'];
+const mesesDisponibles = ['marzo', 'abril', 'mayo'];
 
 const DashboardView = () => {
-  const [mesActivo, setMesActivo] = useState('abril');
+  const [mesActivo, setMesActivo] = useState('mayo');
   const datos = datosMes[mesActivo];
 
   const cursosCompletadosPromedio = Math.round(
@@ -323,26 +357,22 @@ const DashboardView = () => {
       <div className="progress-card">
         <h3 className="section-title">Progreso por Unidad de Negocio</h3>
         <div className="progress-list">
-          {unidades
-            .filter((u) => u !== 'Todas' && u !== 'Transversal')
-            .map((un) => {
-              const cursosUN = cursos.filter((c) => c.un === un);
-              const totalCompletados = cursosUN.reduce((acc, c) => acc + c.completados, 0);
-              const totalPosible = cursosUN.length * TOTAL_EMPLEADOS;
-              const porcentaje = Math.round((totalCompletados / totalPosible) * 100);
-
-              return (
-                <div key={un} className="progress-item">
-                  <div className="progress-header">
-                    <span className="progress-name">{un}</span>
-                    <span className="progress-percentage">{porcentaje}%</span>
-                  </div>
-                  <div className="progress-bar-container">
-                    <div className="progress-bar" style={{ width: `${porcentaje}%` }}></div>
-                  </div>
-                </div>
-              );
-            })}
+          {[
+            { un: 'Alimentos',        porcentaje: 67 },
+            { un: 'Aceites',          porcentaje: 48 },
+            { un: 'Nutrición animal', porcentaje: 48 },
+            { un: 'Aseo',             porcentaje: 72 },
+          ].map(({ un, porcentaje }) => (
+            <div key={un} className="progress-item">
+              <div className="progress-header">
+                <span className="progress-name">{un}</span>
+                <span className="progress-percentage">{porcentaje}%</span>
+              </div>
+              <div className="progress-bar-container">
+                <div className="progress-bar" style={{ width: `${porcentaje}%` }}></div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
