@@ -16,7 +16,7 @@ const datosMes = {
     },
     eficacia: {
       general: 96,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 26,
       aprobadas: 24,
       promedio: '96%',
@@ -314,7 +314,7 @@ const DashboardView = () => {
               <div className="indicador-stats">
                 {[
                   { label: 'Evaluaciones realizadas:', value: datos.eficacia.evaluacionesRealizadas },
-                  { label: 'Aprobadas (≥70%):', value: datos.eficacia.aprobadas },
+                  { label: 'Aprobadas (≥90%):', value: datos.eficacia.aprobadas },
                   { label: 'Promedio general:', value: datos.eficacia.promedio },
                 ].map((row) => (
                   <div key={row.label} className="stats-row">
