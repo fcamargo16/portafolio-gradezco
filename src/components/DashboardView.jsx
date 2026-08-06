@@ -139,12 +139,46 @@ const datosMes = {
       tiempo: '2 horas',
     },
   },
+  julio: {
+    cumplimiento: {
+      general: 86,
+      meta: 80,
+      detalle: [
+        { nombre: 'Alimentos',        porcentaje: '92%' },
+        { nombre: 'Aceites',          porcentaje: '93%' },
+        { nombre: 'Nutrición Animal', porcentaje: '66%' },
+        { nombre: 'Aseo',             porcentaje: '91%' },
+      ],
+    },
+    eficacia: {
+      general: 94,
+      meta: 75,
+      evaluacionesRealizadas: 928,
+      aprobadas: 912,
+      promedio: '92%',
+    },
+    satisfaccion: {
+      puntaje: 4.8,
+      meta: 4.0,
+      encuestas: 428,
+      muySatisfechos: '408',
+      satisfechos: '16',
+    },
+    induccion: {
+      general: 100,
+      meta: 70,
+      empleados: '61',
+      totalEmpleados: '61',
+      promedio: '98%',
+      tiempo: '2 horas',
+    },
+  },
 };
 
-const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio'];
+const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio'];
 
 const DashboardView = () => {
-  const [mesActivo, setMesActivo] = useState('junio');
+  const [mesActivo, setMesActivo] = useState('julio');
   const datos = datosMes[mesActivo];
 
   const cursosCompletadosPromedio = Math.round(
