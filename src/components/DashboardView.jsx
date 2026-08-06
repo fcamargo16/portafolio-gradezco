@@ -50,7 +50,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 32,
       aprobadas: 24,
       promedio: '98%',
@@ -84,7 +84,7 @@ const datosMes = {
     },
     eficacia: {
       general: 0,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 0,
       aprobadas: 0,
       promedio: '0%',
@@ -118,7 +118,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 6,
       aprobadas: 6,
       promedio: '98%',
@@ -152,7 +152,7 @@ const datosMes = {
     },
     eficacia: {
       general: 94,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 928,
       aprobadas: 912,
       promedio: '92%',
@@ -166,7 +166,7 @@ const datosMes = {
     },
     induccion: {
       general: 100,
-      meta: 70,
+      meta: 90,
       empleados: '61',
       totalEmpleados: '61',
       promedio: '98%',
