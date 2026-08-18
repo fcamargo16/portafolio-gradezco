@@ -7,6 +7,7 @@ import CronogramaView from './components/CronogramaView';
 import CursosView from './components/CursosView';
 import EvidenciasView from './components/EvidenciasView';
 import CompetenciasView from './components/CompetenciasView';
+import PersonasView from './components/PersonasView';
 
 const PortafolioAprendizaje = () => {
   // Navegación
@@ -64,6 +65,7 @@ const PortafolioAprendizaje = () => {
     { id: 'cursos',       label: 'Cursos',      Icon: BookOpen   },
     { id: 'evidencias',   label: 'Evidencias',  Icon: Award      },
     { id: 'competencias', label: 'Competencias',Icon: User       },
+    { id: 'personas', label: 'Personas', Icon: User },
   ];
 
   return (
@@ -142,6 +144,7 @@ const PortafolioAprendizaje = () => {
             )}
 
             {vistaActiva === 'competencias' && <CompetenciasView />}
+            {vistaActiva === 'personas' && <PersonasView />}
           </main>
 
           {/* Footer */}
