@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { User, Lock, Upload, Search, ChevronDown, ChevronUp, X, FileSpreadsheet } from 'lucide-react';
+import { User, Lock, Search, ChevronDown, ChevronUp, FileSpreadsheet } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
 const PASSWORD = 'Formacion20**';
