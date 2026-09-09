@@ -16,7 +16,7 @@ const datosMes = {
     },
     eficacia: {
       general: 96,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 26,
       aprobadas: 24,
       promedio: '96%',
@@ -50,7 +50,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 32,
       aprobadas: 24,
       promedio: '98%',
@@ -84,7 +84,7 @@ const datosMes = {
     },
     eficacia: {
       general: 0,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 0,
       aprobadas: 0,
       promedio: '0%',
@@ -118,7 +118,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 6,
       aprobadas: 6,
       promedio: '98%',
@@ -152,7 +152,7 @@ const datosMes = {
     },
     eficacia: {
       general: 94,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 928,
       aprobadas: 912,
       promedio: '92%',
@@ -166,19 +166,53 @@ const datosMes = {
     },
     induccion: {
       general: 100,
-      meta: 90,
+      meta: 70,
       empleados: '61',
       totalEmpleados: '61',
       promedio: '98%',
       tiempo: '2 horas',
     },
   },
+  agosto: {
+    cumplimiento: {
+      general: 86,
+      meta: 80,
+      detalle: [
+        { nombre: 'Alimentos',        porcentaje: '92%' },
+        { nombre: 'Aceites',          porcentaje: '44%' },
+        { nombre: 'Nutrición Animal', porcentaje: '99%' },
+        { nombre: 'Aseo',             porcentaje: '88%' },
+      ],
+    },
+    eficacia: {
+      general: 95,
+      meta: 75,
+      evaluacionesRealizadas: 1890,
+      aprobadas: 1754,
+      promedio: '96%',
+    },
+    satisfaccion: {
+      puntaje: 4.7,
+      meta: 4.0,
+      encuestas: 198,
+      muySatisfechos: '181',
+      satisfechos: '14',
+    },
+    induccion: {
+      general: 100,
+      meta: 70,
+      empleados: '54',
+      totalEmpleados: '54',
+      promedio: '96%',
+      tiempo: '2 horas',
+    },
+  },
 };
 
-const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio'];
+const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto'];
 
 const DashboardView = () => {
-  const [mesActivo, setMesActivo] = useState('julio');
+  const [mesActivo, setMesActivo] = useState('agosto');
   const datos = datosMes[mesActivo];
 
   const cursosCompletadosPromedio = Math.round(
@@ -314,7 +348,7 @@ const DashboardView = () => {
               <div className="indicador-stats">
                 {[
                   { label: 'Evaluaciones realizadas:', value: datos.eficacia.evaluacionesRealizadas },
-                  { label: 'Aprobadas (≥90%):', value: datos.eficacia.aprobadas },
+                  { label: 'Aprobadas (≥70%):', value: datos.eficacia.aprobadas },
                   { label: 'Promedio general:', value: datos.eficacia.promedio },
                 ].map((row) => (
                   <div key={row.label} className="stats-row">
