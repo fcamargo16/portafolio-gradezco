@@ -174,7 +174,7 @@ const datosMes = {
   },
   agosto: {
     cumplimiento: {
-      general: 86,
+      general: 81,
       meta: 80,
       detalle: [
         { nombre: 'Alimentos',        porcentaje: '92%' },
@@ -284,14 +284,14 @@ const DashboardView = () => {
 
         <div className="indicadores-grid">
 
-          {/* Cumplimiento */}
+          {/* Cobertura */}
           <div className="indicador-card">
             <div className="indicador-header">
               <div className="indicador-icon-wrapper" style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)' }}>
                 <CheckCircle size={28} color="#ff0000" />
               </div>
               <div className="indicador-info">
-                <h4 className="indicador-titulo">Cumplimiento</h4>
+                <h4 className="indicador-titulo">Cobertura</h4>
                 <p className="indicador-descripcion">Cobertura de cursos por UN</p>
               </div>
             </div>
