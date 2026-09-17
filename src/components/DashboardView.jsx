@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BookOpen, User, Award, TrendingUp, CheckCircle, Clock, Heart } from 'lucide-react';
-import { cursos, TOTAL_EMPLEADOS } from '../data/data';
 
 const datosMes = {
   marzo: {
@@ -215,11 +214,6 @@ const DashboardView = () => {
   const [mesActivo, setMesActivo] = useState('agosto');
   const datos = datosMes[mesActivo];
 
-  const cursosCompletadosPromedio = Math.round(
-    cursos.reduce((acc, c) => acc + c.completados, 0) / cursos.length
-  );
-  const tasaCompletacion = Math.round((cursosCompletadosPromedio / TOTAL_EMPLEADOS) * 100);
-
   return (
     <div className="dashboard-container">
       {/* Métricas generales */}
@@ -227,28 +221,28 @@ const DashboardView = () => {
         <div className="metric-card">
           <div className="metric-header">
             <BookOpen size={32} color="#121e4b" />
-            <span className="metric-value">{cursos.length}</span>
+            <span className="metric-value">86</span>
           </div>
           <p className="metric-label">Cursos Totales</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <User size={32} color="#121e4b" />
-            <span className="metric-value">{TOTAL_EMPLEADOS}</span>
+            <span className="metric-value">2.012</span>
           </div>
           <p className="metric-label">Empleados</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <Award size={32} color="#121e4b" />
-            <span className="metric-value">{tasaCompletacion}%</span>
+            <span className="metric-value">86%</span>
           </div>
           <p className="metric-label">Tasa Cumplimiento</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <TrendingUp size={32} color="#121e4b" />
-            <span className="metric-value">8.2</span>
+            <span className="metric-value">9</span>
           </div>
           <p className="metric-label">Cursos por Empleado</p>
         </div>
@@ -264,7 +258,7 @@ const DashboardView = () => {
       <div className="indicadores-section">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
           <h3 className="section-title" style={{ marginBottom: 0 }}>Indicadores de Capacitación</h3>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {mesesDisponibles.map((mes) => (
               <button
                 key={mes}
@@ -455,7 +449,7 @@ const DashboardView = () => {
         <div className="divider-line"></div>
       </div>
 
-      {/* Progreso por Unidad de Negocio (sin Transversal) */}
+      {/* Progreso por Unidad de Negocio */}
       <div className="progress-card">
         <h3 className="section-title">Progreso por Unidad de Negocio</h3>
         <div className="progress-list">
