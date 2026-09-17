@@ -15,7 +15,7 @@ const datosMes = {
     },
     eficacia: {
       general: 96,
-      meta: 75,
+      meta: 90,
       evaluacionesRealizadas: 26,
       aprobadas: 24,
       promedio: '96%',
