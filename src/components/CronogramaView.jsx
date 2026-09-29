@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Search, Heart, CheckCircle, Clock } from 'lucide-react';
 import { cursosCronograma, unidades, meses } from '../data/data';
 
