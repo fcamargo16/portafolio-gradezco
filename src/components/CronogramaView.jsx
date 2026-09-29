@@ -111,11 +111,6 @@ const CronogramaView = ({
             <option value="Gestión">Gestión</option>
             <option value="Técnica">Técnica</option>
           </select>
-          <select className="filter-select" value={filtroNivel} onChange={(e) => setFiltroNivel(e.target.value)}>
-            <option value="Todos">Todos los tipos</option>
-            <option value="Gestión">Gestión</option>
-            <option value="Técnica">Técnica</option>
-          </select>
           <select className="filter-select" value={filtroMes} onChange={(e) => setFiltroMes(e.target.value)}>
             <option value="Todos">Todos los meses</option>
             {meses.map((mes) => (
