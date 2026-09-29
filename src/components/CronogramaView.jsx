@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Heart, CheckCircle, Clock } from 'lucide-react';
 import { cursosCronograma, unidades, meses } from '../data/data';
 
@@ -34,12 +34,15 @@ const CronogramaView = ({
   filtroMes,
   setFiltroMes,
 }) => {
+  const [filtroNivel, setFiltroNivel] = React.useState('Todos');
+
   const cursosFiltrados = cursosCronograma.filter((curso) => {
     const cumpleBusqueda = curso.nombre.toLowerCase().includes(busquedaCronograma.toLowerCase());
     const cumpleUN = filtroUNCronograma === 'Todas' || curso.un === filtroUNCronograma;
     const cumpleModalidad = filtroModalidadCronograma === 'Todas' || curso.modalidad === filtroModalidadCronograma;
     const cumpleMes = filtroMes === 'Todos' || curso.mes.toLowerCase() === filtroMes.toLowerCase();
-    return cumpleBusqueda && cumpleUN && cumpleModalidad && cumpleMes;
+    const cumpleNivel = filtroNivel === 'Todos' || curso.nivel === filtroNivel;
+    return cumpleBusqueda && cumpleUN && cumpleModalidad && cumpleMes && cumpleNivel;
   });
 
   const mesesConCursos = meses.filter((mes) =>
@@ -102,6 +105,16 @@ const CronogramaView = ({
             <option value="Todas">Todas las modalidades</option>
             <option value="Virtual">Virtual</option>
             <option value="Presencial">Presencial</option>
+          </select>
+          <select className="filter-select" value={filtroNivel} onChange={(e) => setFiltroNivel(e.target.value)}>
+            <option value="Todos">Todos los tipos</option>
+            <option value="Gestión">Gestión</option>
+            <option value="Técnica">Técnica</option>
+          </select>
+          <select className="filter-select" value={filtroNivel} onChange={(e) => setFiltroNivel(e.target.value)}>
+            <option value="Todos">Todos los tipos</option>
+            <option value="Gestión">Gestión</option>
+            <option value="Técnica">Técnica</option>
           </select>
           <select className="filter-select" value={filtroMes} onChange={(e) => setFiltroMes(e.target.value)}>
             <option value="Todos">Todos los meses</option>
