@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, User, Award, TrendingUp, CheckCircle, Clock, Heart } from 'lucide-react';
+import { cursos, TOTAL_EMPLEADOS } from '../data/data';
 
 const datosMes = {
   marzo: {
@@ -15,7 +16,7 @@ const datosMes = {
     },
     eficacia: {
       general: 96,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 26,
       aprobadas: 24,
       promedio: '96%',
@@ -49,7 +50,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 32,
       aprobadas: 24,
       promedio: '98%',
@@ -83,7 +84,7 @@ const datosMes = {
     },
     eficacia: {
       general: 0,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 0,
       aprobadas: 0,
       promedio: '0%',
@@ -117,7 +118,7 @@ const datosMes = {
     },
     eficacia: {
       general: 98,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 6,
       aprobadas: 6,
       promedio: '98%',
@@ -151,7 +152,7 @@ const datosMes = {
     },
     eficacia: {
       general: 94,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 928,
       aprobadas: 912,
       promedio: '92%',
@@ -185,7 +186,7 @@ const datosMes = {
     },
     eficacia: {
       general: 95,
-      meta: 90,
+      meta: 75,
       evaluacionesRealizadas: 1890,
       aprobadas: 1754,
       promedio: '96%',
@@ -206,13 +207,52 @@ const datosMes = {
       tiempo: '2 horas',
     },
   },
+  septiembre: {
+    cumplimiento: {
+      general: 95,
+      meta: 80,
+      detalle: [
+        { nombre: 'Alimentos',        porcentaje: '97%' },
+        { nombre: 'Aceites',          porcentaje: '95%' },
+        { nombre: 'Nutrición Animal', porcentaje: '89%' },
+        { nombre: 'Aseo',             porcentaje: '99%' },
+      ],
+    },
+    eficacia: {
+      general: 92,
+      meta: 90,
+      evaluacionesRealizadas: 456,
+      aprobadas: 421,
+      promedio: '92%',
+    },
+    satisfaccion: {
+      puntaje: 4.4,
+      meta: 4.0,
+      encuestas: 134,
+      muySatisfechos: '112',
+      satisfechos: '8',
+    },
+    induccion: {
+      general: 100,
+      meta: 70,
+      empleados: '42',
+      totalEmpleados: '42',
+      promedio: '93%',
+      tiempo: '2 horas',
+    },
+  },
 };
 
-const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto'];
+const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre'];
 
 const DashboardView = () => {
-  const [mesActivo, setMesActivo] = useState('agosto');
+  const [mesActivo, setMesActivo] = useState('septiembre');
   const datos = datosMes[mesActivo];
+
+  const cursosCompletadosPromedio = Math.round(
+    cursos.reduce((acc, c) => acc + c.completados, 0) / cursos.length
+  );
+  const tasaCompletacion = Math.round((cursosCompletadosPromedio / TOTAL_EMPLEADOS) * 100);
 
   return (
     <div className="dashboard-container">
@@ -221,28 +261,28 @@ const DashboardView = () => {
         <div className="metric-card">
           <div className="metric-header">
             <BookOpen size={32} color="#121e4b" />
-            <span className="metric-value">86</span>
+            <span className="metric-value">{cursos.length}</span>
           </div>
           <p className="metric-label">Cursos Totales</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <User size={32} color="#121e4b" />
-            <span className="metric-value">2.012</span>
+            <span className="metric-value">{TOTAL_EMPLEADOS}</span>
           </div>
           <p className="metric-label">Empleados</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <Award size={32} color="#121e4b" />
-            <span className="metric-value">86%</span>
+            <span className="metric-value">{tasaCompletacion}%</span>
           </div>
           <p className="metric-label">Tasa Cumplimiento</p>
         </div>
         <div className="metric-card">
           <div className="metric-header">
             <TrendingUp size={32} color="#121e4b" />
-            <span className="metric-value">9</span>
+            <span className="metric-value">8.2</span>
           </div>
           <p className="metric-label">Cursos por Empleado</p>
         </div>
@@ -258,7 +298,7 @@ const DashboardView = () => {
       <div className="indicadores-section">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
           <h3 className="section-title" style={{ marginBottom: 0 }}>Indicadores de Capacitación</h3>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '8px' }}>
             {mesesDisponibles.map((mes) => (
               <button
                 key={mes}
@@ -284,14 +324,14 @@ const DashboardView = () => {
 
         <div className="indicadores-grid">
 
-          {/* Cobertura */}
+          {/* Cumplimiento */}
           <div className="indicador-card">
             <div className="indicador-header">
               <div className="indicador-icon-wrapper" style={{ backgroundColor: 'rgba(255, 0, 0, 0.1)' }}>
                 <CheckCircle size={28} color="#ff0000" />
               </div>
               <div className="indicador-info">
-                <h4 className="indicador-titulo">Cobertura</h4>
+                <h4 className="indicador-titulo">Cumplimiento</h4>
                 <p className="indicador-descripcion">Cobertura de cursos por UN</p>
               </div>
             </div>
@@ -449,7 +489,7 @@ const DashboardView = () => {
         <div className="divider-line"></div>
       </div>
 
-      {/* Progreso por Unidad de Negocio */}
+      {/* Progreso por Unidad de Negocio (sin Transversal) */}
       <div className="progress-card">
         <h3 className="section-title">Progreso por Unidad de Negocio</h3>
         <div className="progress-list">
