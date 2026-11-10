@@ -241,18 +241,49 @@ const datosMes = {
       tiempo: '2 horas',
     },
   },
+  octubre: {
+    cumplimiento: {
+      general: 91,
+      meta: 80,
+      detalle: [
+        { nombre: 'Alimentos',        porcentaje: '93%' },
+        { nombre: 'Aceites',          porcentaje: '93%' },
+        { nombre: 'Nutrición Animal', porcentaje: '91%' },
+        { nombre: 'Aseo',             porcentaje: '84%' },
+      ],
+    },
+    eficacia: {
+      general: 96,
+      meta: 90,
+      evaluacionesRealizadas: 438,
+      aprobadas: 421,
+      promedio: '96%',
+    },
+    satisfaccion: {
+      puntaje: 4.8,
+      meta: 4.0,
+      encuestas: 98,
+      muySatisfechos: '92',
+      satisfechos: '4',
+    },
+    induccion: {
+      general: 100,
+      meta: 70,
+      empleados: '32',
+      totalEmpleados: '32',
+      promedio: '96%',
+      tiempo: '2 horas',
+    },
+  },
 };
 
-const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre'];
+const mesesDisponibles = ['marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre'];
 
 const DashboardView = () => {
-  const [mesActivo, setMesActivo] = useState('septiembre');
+  const [mesActivo, setMesActivo] = useState('octubre');
   const datos = datosMes[mesActivo];
 
-  const cursosCompletadosPromedio = Math.round(
-    cursos.reduce((acc, c) => acc + c.completados, 0) / cursos.length
-  );
-  const tasaCompletacion = Math.round((cursosCompletadosPromedio / TOTAL_EMPLEADOS) * 100);
+  const tasaCompletacion = datos?.cumplimiento?.general ?? 0;
 
   return (
     <div className="dashboard-container">
@@ -494,10 +525,10 @@ const DashboardView = () => {
         <h3 className="section-title">Progreso por Unidad de Negocio</h3>
         <div className="progress-list">
           {[
-            { un: 'Alimentos',        porcentaje: 67 },
-            { un: 'Aceites',          porcentaje: 48 },
-            { un: 'Nutrición animal', porcentaje: 48 },
-            { un: 'Aseo',             porcentaje: 72 },
+            { un: 'Alimentos',        porcentaje: 87 },
+            { un: 'Aceites',          porcentaje: 78 },
+            { un: 'Nutrición animal', porcentaje: 76 },
+            { un: 'Aseo',             porcentaje: 89 },
           ].map(({ un, porcentaje }) => (
             <div key={un} className="progress-item">
               <div className="progress-header">
